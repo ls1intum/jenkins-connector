@@ -14,7 +14,7 @@ COPY gradle.properties .
 RUN chmod +x ./gradlew
 
 # Copy source code
-COPY src src
+COPY jenkins-connector/src src
 
 # Build the application
 RUN ./gradlew clean build -x test --no-daemon
