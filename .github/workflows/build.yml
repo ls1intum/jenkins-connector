@@ -1,0 +1,26 @@
+name: Build Docker Images
+
+permissions:
+  contents: read
+  packages: write
+
+on:
+  pull_request:
+    branches:
+      - main
+      - release/*
+  push:
+    branches:
+      - main
+      - release/*
+  release:
+    types:
+      - created
+
+jobs:
+  build:
+    if: github.actor != 'dependabot[bot]'
+    uses: ls1intum/.github/.github/workflows/build-and-push-docker-image.yml@v1.1.1
+    with:
+      image-name: ls1intum/jenkins-connector
+      docker-file: ./Dockerfile
